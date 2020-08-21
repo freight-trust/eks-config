@@ -1,0 +1,22 @@
+---
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: kops-eks
+  region: us-west-2
+ 
+
+git:
+  repo:
+    url: "git@github.com:freight-trust/eks-config.git"
+    branch: master
+    fluxPath: "flux/"
+    user: "gitops"
+    email: "services@users.noreply.github.com"
+  operator:
+    namespace: "flux"
+    withHelm: true
+  bootstrapProfile:
+    source: app-dev
+    revision: master
